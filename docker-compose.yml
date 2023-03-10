@@ -1,0 +1,20 @@
+version: '3'
+
+networks:
+  api_creditcard:
+
+services:
+  api:
+    tty: true
+    stdin_open: true
+    container_name: api
+    user: 1000:1000
+    build:
+      context: .
+      dockerfile: ./_docker/api/Dockerfile.development
+    volumes:
+      - "./api/:/var/www/api/"
+    ports:
+      - 3000:3000
+    networks:
+      - api_creditcard
